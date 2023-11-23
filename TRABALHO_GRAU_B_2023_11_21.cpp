@@ -18,7 +18,7 @@ typedef struct {
 //----------- DECLARACAO DAS SUBROTINAS ---------------------
 int menu1(void);
 int menu2(void);
-int men3(void);
+int menu3(void);
 int cadastro_item(int n, ITEM f[100]);
 void consuta_item(int n, ITEM f[100]);
 void historico_compras(int m, ITEM f[100]);
