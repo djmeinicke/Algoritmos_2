@@ -12,6 +12,7 @@ typedef struct {
 	char tipo_item[30] ;
 	float preco_item;
 	float quantidade_item;
+	char nome_fornecedor[30];
 	
 } ITEM;
 
@@ -91,52 +92,52 @@ int cadastro_item(int n, ITEM f[100])
 			switch (val_tipo_item)
     		{
 				case 1:
-				//f[n].nome_item = 'Plastico';
+					strcpy (f[n].tipo_item, "Plastico");
 					val_tipo_item_ok = true;
 					break;
 					
 				case 2:
-				//	f[n].nome_item = 'Papel';
+					strcpy (f[n].tipo_item, "Papel");
 					val_tipo_item_ok = true;
 					break;
 					
 				case 3:
-				//	f[n].nome_item = 'Vidro';
+					strcpy (f[n].tipo_item, "Vidro");
 					val_tipo_item_ok = true;
 					break;
 					
 				case 4:
-				//	f[n].nome_item = 'Metal';
+					strcpy (f[n].tipo_item, "Metal");
 					val_tipo_item_ok = true;
 					break;
 					
 				case 5:
-				//	f[n].nome_item = 'Madeira';	
+					strcpy (f[n].tipo_item, "Madeira");
 					val_tipo_item_ok = true;
 					break;
 					
 				case 6:
-				//	f[n].nome_item = 'Lixo orgânico';	
+					strcpy (f[n].tipo_item, "Lixo Orgânico");	
 					val_tipo_item_ok = true;
 					break;
 					
 				case 7:
-				//	f[n].nome_item = 'Lixo não recicláveis';	
+					strcpy (f[n].tipo_item, "Lixo Não Orgânico");	
 					val_tipo_item_ok = true;
 					break;
 					
 				case 8:
-				//	f[n].nome_item = 'Lixo Radioativo';	
+					strcpy (f[n].tipo_item, "Lixo Radioativo");
 					val_tipo_item_ok = true;
 					break;
 					
 				case 9:
-				//	f[n].nome_item = 'Lixo Hospitalar';		
+					strcpy (f[n].tipo_item, "Lixo Hospitalar");	
 					val_tipo_item_ok = true;
 					break;
 					
 				case 10:
-				//	f[n].nome_item = 'Pilhas e Baterias';	
+					strcpy (f[n].tipo_item, "Pilhas e Baterias");
 					val_tipo_item_ok = true;
 					break;
 					
@@ -238,8 +239,6 @@ void consulta_item(int n, ITEM f[100])
 
 
 
-
-
 //----------- ROTINA HISTÓRICO DE COMPRAS ----------------------
 void historico_compras(int m, ITEM hf[100])
 {
@@ -258,9 +257,9 @@ void historico_compras(int m, ITEM hf[100])
 		printf("ITENS COMPRADOS = %d \n",m);		
     	for(i=0; i<m ; i++)
   		{	
-  			printf("\n---------------------------------------------------------------------------------------------------------------- ");
-	   		printf("\nITEM: %d   |   Codigo: %d   |   Nome: %s   |   Tipo: %s   |   Preço pago: R$%.2f reais   |   Quantidade: %.2f Kg ",i+1 ,hf[i].codigo_item, hf[i].nome_item, hf[i].tipo_item, hf[i].preco_item, hf[i].quantidade_item);
-	   		printf("\n----------------------------------------------------------------------------------------------------------------\n\n ");
+  			printf("\n------------------------------------------------------------------------------------------------------------------------------------------- ");
+	   		printf("\nITEM: %d   |   Codigo: %d   |   Nome: %s   |   Tipo: %s   |   Preco kg: R$%.2f reais   |   Quantidade: %.2f Kg   |   Nome do fornecedor: %s ",i+1 ,hf[i].codigo_item, hf[i].nome_item, hf[i].tipo_item, hf[i].preco_item, hf[i].quantidade_item, hf[i].nome_fornecedor);
+	   		printf("\n-------------------------------------------------------------------------------------------------------------------------------------------\n\n ");
 		}
 		getch();
 		system ("cls");
@@ -288,27 +287,31 @@ int compra_materiais(int n, ITEM f[100], int m, ITEM hf[100])
 		printf("\n\n================================================================================================================\n\n ");
 		getch();
 		system ("cls");	
-	} else {
-		printf("1. Digite o código do produto: ");
+	} else {		
+		printf("2. Digite o código do produto: ");
 		scanf("%d", &codigo);	
     	for(i=0; i<n ; i++)	{	
   			if (codigo == f[i].codigo_item) {
-  				printf("\n---------------------------------------------------------------------------------------------------------------- ");
+  				printf("\n------------------------------------------------------------------------------------------------------------------------------------------- ");
 	   			printf("\nITEM: %d   |   Codigo: %d   |   Nome: %s   |   Tipo: %s   |   Preco kg: R$%.2f reais   |   Quantidade: %.2f Kg ",i+1 ,f[i].codigo_item, f[i].nome_item, f[i].tipo_item, f[i].preco_item, f[i].quantidade_item);
-	   			printf("\n----------------------------------------------------------------------------------------------------------------\n\n ");
+	   			printf("\n-------------------------------------------------------------------------------------------------------------------------------------------\n\n ");
 	   			cont++;
 	   			
 	   			do {
-	   				printf("2. Digite a quantidade desejada: ");
+	   				printf("3. Digite a quantidade desejada: ");
 	   				scanf("%f", &quantidade);
-	   				if (quantidade > f[i].quantidade_item) {
-	   					printf("\nQuantidade não disponível, em estoque há armazenado apenas %.2f kg deste item", f[i].quantidade_item );
+	   				if (quantidade <= 0) {
+	   					printf("\nValor inválido, valor de compra não pode ser zero");
 	   					getch();
 						system ("cls");			   	
 					}
-				} while (quantidade > f[i].quantidade_item);	
+				} while (quantidade <= 0);
 				
-				printf("\nO valor cobrado por %.2f kg do código %d é de %.2f reais", quantidade, f[i].codigo_item, f[i].preco_item * quantidade);
+				printf("1. Nome do Fornecedor: "); 						//Recebe nome do fornecedor
+				fflush(stdin);
+				gets (f[i].nome_fornecedor);
+				
+				printf("\nO valor pago por %.2f kg do código %d é de %.2f reais", quantidade, f[i].codigo_item, f[i].preco_item * quantidade);
 				
 				do {										//Recebe e valida confirmacao de compra
 					printf("\n\nDeseja confirmar a compra? "); 
@@ -323,7 +326,7 @@ int compra_materiais(int n, ITEM f[100], int m, ITEM hf[100])
 				}  while ((confirma_compra !='s') && (confirma_compra !='n'));
 				
 				if (confirma_compra =='s') {
-					f[i].quantidade_item= (f[i].quantidade_item - quantidade);	// Desconta quantidade don estoque atual
+					f[i].quantidade_item= (f[i].quantidade_item + quantidade);	// Desconta quantidade don estoque atual
 	
 					hf[i] = f[i];                                               // Carrega os dados para o histórico de compras
 					hf[i].quantidade_item = quantidade;                         // Carrega a quantidade atual da compra para o historico
