@@ -49,7 +49,7 @@ int cadastro_item(int n, ITEM f[100])
 			printf("A. Codigo do item: ");
 			scanf("%d", &val_codigo_item);
 			if ((val_codigo_item<=0) || (val_codigo_item>999)) {    
-				printf("Código incorreto, digite novamente."); 
+				printf("\n Código incorreto, digite novamente."); 
 				getch();
 				system ("cls");				
 			} else { 	
@@ -60,7 +60,7 @@ int cadastro_item(int n, ITEM f[100])
 					}
 				}
 				if (val_codigo_item_nok == true) { 
-					printf("Código digitado já foi cadastrado, tente novamente..."); 
+					printf("\n Código digitado já foi cadastrado, tente novamente..."); 
 					getch();
 					system ("cls");				
 				} else {
@@ -77,16 +77,16 @@ int cadastro_item(int n, ITEM f[100])
 			printf("\n================================================================================================================\n\n ");
 			
 			printf("B. Tipo do item: \n\n");
-			printf("1= Plástico \n");	
-			printf("2= Papel \n");
-			printf("3= Vidro \n");
-			printf("4= Metal \n");	
-			printf("5= Madeira \n");
-			printf("6= Lixo orgânico \n");
-			printf("7= Lixo não recicláveis \n");
-			printf("8= Lixo Radioativo \n");
-			printf("9= Lixo Hospitalar \n");
-			printf("10= Pilhas e Baterias \n");
+			printf(" 1= Plástico \n");	
+			printf(" 2= Papel \n");
+			printf(" 3= Vidro \n");
+			printf(" 4= Metal \n");	
+			printf(" 5= Madeira \n");
+			printf(" 6= Lixo orgânico \n");
+			printf(" 7= Lixo não recicláveis \n");
+			printf(" 8= Lixo Radioativo \n");
+			printf(" 9= Lixo Hospitalar \n");
+			printf(" 10= Pilhas e Baterias \n");
 			scanf("%d", &val_tipo_item);		
 					
 			switch (val_tipo_item)
@@ -146,7 +146,7 @@ int cadastro_item(int n, ITEM f[100])
 					break;
 			};
 			if (val_tipo_item_ok == false) {
-				printf("Tipo do item inválido, digite novamente."); 
+				printf("\n Tipo do item inválido, digite novamente."); 
 				getch();
 				system ("cls");				
 			}		
@@ -170,7 +170,7 @@ int cadastro_item(int n, ITEM f[100])
 			printf("D. Valor do kg do item: ");
 			scanf("%f", &f[n].preco_item);
 			if (f[n].preco_item<=0) {
-				printf("Valor não pode ser zerado, digite novamente.");
+				printf("\n Valor não pode ser zerado, digite novamente.");
 				getch();
 				system ("cls");			
 			}
@@ -185,7 +185,7 @@ int cadastro_item(int n, ITEM f[100])
 			printf("E. Quantidade em kg do item: ");
 			scanf("%f",  &f[n].quantidade_item);
 			if (f[n].quantidade_item < 0) {
-				printf("Valor não pode ser zerado, digite novamente.");
+				printf("\n Valor não pode ser zerado, digite novamente.");
 				getch();
 				system ("cls");			
 			}
@@ -195,13 +195,13 @@ int cadastro_item(int n, ITEM f[100])
 	
 		do {										//Recebe e valida confirmacao de novo item para ser cadastrado
 			system("cls"); //Limpa tela....	
-			printf("\n\nDeseja cadastrar um novo item? "); 
-			printf("\nS= Sim / N= Não \n"); 			
+			printf("\n\n Deseja cadastrar um novo item? "); 
+			printf("\n S= Sim / N= Não \n"); 			
 			novo_item = tolower(getche());
 		
 			if ((novo_item != 's') && (novo_item != 'n')) {
 				system("cls"); //Limpa tela....
-				printf("Dado inválido, digite novamente"); 	
+				printf("\n Dado inválido, digite novamente"); 	
 				getch();
 			}
 		}  while ((novo_item !='s') && (novo_item !='n'));				
@@ -219,14 +219,14 @@ void consulta_item(int n, ITEM f[100])
 	printf("\n=================================== RELATORIO DE MATERIAIS CADASTRADOS ========================================= ");
 	printf("\n================================================================================================================\n\n ");
 	
-	if (n==0) {
+	if (n==0) {										//Verifica se existe algum item cadastrado
 		printf("******   Desculpe, não contém nenhum item cadastrado   ******");
 		printf("\n\n================================================================================================================\n\n ");
 		getch();
 		system ("cls");	
 	} else {
 		printf("ITENS CADASTRADOS = %d \n",n);		
-    	for(i=0; i<n ; i++)
+    	for(i=0; i<n ; i++)						    //Laco para impressao dos itens cadastrados
   		{	
   			printf("\n---------------------------------------------------------------------------------------------------------------- ");
 	   		printf("\nITEM: %d   |   Codigo: %d   |   Nome: %s   |   Tipo: %s   |   Preco kg: R$%.2f reais   |   Quantidade: %.2f Kg ",i+1 ,f[i].codigo_item, f[i].nome_item, f[i].tipo_item, f[i].preco_item, f[i].quantidade_item);
@@ -244,22 +244,22 @@ void historico_compras(int m, ITEM hf[100])
 {
 	int i;
 	system("cls"); //Limpa tela....	
-	printf("\n================================================================================================================ ");
-	printf("\n==================================== RELATÓRIO DO HISTÓRICO DE COMPRAS ========================================= ");
-	printf("\n================================================================================================================\n\n ");
+	printf("\n=================================================================================================================================================================");
+	printf("\n==================================== RELATÓRIO DO HISTÓRICO DE COMPRAS ========================================================================================== ");
+	printf("\n=================================================================================================================================================================\n\n ");
 	
-	if (m==0) {
-		printf("******   Desculpe, não foi realizado nehuma compra   ******");
-		printf("\n\n================================================================================================================\n\n ");
+	if (m==0) {										//Verifica se existe alguma compra efetuada
+		printf("******   Desculpe, não foi realizada nenhuma compra   ******");
+		printf("\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n ");
 		getch();
 		system ("cls");	
 	} else {
 		printf("ITENS COMPRADOS = %d \n",m);		
-    	for(i=0; i<m ; i++)
+    	for(i=0; i<m ; i++)							//Laco para impressao das compras efetuadas
   		{	
-  			printf("\n------------------------------------------------------------------------------------------------------------------------------------------- ");
-	   		printf("\nITEM: %d   |   Codigo: %d   |   Nome: %s   |   Tipo: %s   |   Preco kg: R$%.2f reais   |   Quantidade: %.2f Kg   |   Nome do fornecedor: %s ",i+1 ,hf[i].codigo_item, hf[i].nome_item, hf[i].tipo_item, hf[i].preco_item, hf[i].quantidade_item, hf[i].nome_fornecedor);
-	   		printf("\n-------------------------------------------------------------------------------------------------------------------------------------------\n\n ");
+  			printf("\n----------------------------------------------------------------------------------------------------------------------------------------------------------------- ");
+	   		printf("\nITEM: %d   |   Codigo: %d   |   Nome: %s   |   Tipo: %s   |   Valor pago (kg): R$%.2f reais   |   Quantidade: %.2f Kg   |   Nome do fornecedor: %s ",i+1 ,hf[i].codigo_item, hf[i].nome_item, hf[i].tipo_item, hf[i].preco_item, hf[i].quantidade_item, hf[i].nome_fornecedor);
+	   		printf("\n-----------------------------------------------------------------------------------------------------------------------------------------------------------------\n\n ");
 		}
 		getch();
 		system ("cls");
@@ -282,66 +282,66 @@ int compra_materiais(int n, ITEM f[100], int m, ITEM hf[100])
 	printf("\n===================================== COMPRA DE MATERIAIS RECICLADOS =========================================== ");
 	printf("\n================================================================================================================\n\n ");
 	
-	if (n==0) {
+	if (n==0) {										//Verifica se existe algum item cadastrado
 		printf("******   Desculpe, não contém nenhum produto em estoque para venda   ******");
 		printf("\n\n================================================================================================================\n\n ");
 		getch();
 		system ("cls");	
 	} else {		
-		printf("2. Digite o código do produto: ");
+		printf("1. Digite o código do produto: ");
 		scanf("%d", &codigo);	
     	for(i=0; i<n ; i++)	{	
-  			if (codigo == f[i].codigo_item) {
-  				printf("\n------------------------------------------------------------------------------------------------------------------------------------------- ");
+  			if (codigo == f[i].codigo_item) {		                              //Verifica se o codigo digitado já foi cadastrado pelo sistema e imprime oas dados relacionados a ele
+  				printf("\n---------------------------------------------------------------------------------------------------------------");
 	   			printf("\nITEM: %d   |   Codigo: %d   |   Nome: %s   |   Tipo: %s   |   Preco kg: R$%.2f reais   |   Quantidade: %.2f Kg ",i+1 ,f[i].codigo_item, f[i].nome_item, f[i].tipo_item, f[i].preco_item, f[i].quantidade_item);
-	   			printf("\n-------------------------------------------------------------------------------------------------------------------------------------------\n\n ");
+	   			printf("\n---------------------------------------------------------------------------------------------------------------\n\n ");
 	   			cont++;
 	   			
-	   			do {
-	   				printf("3. Digite a quantidade desejada: ");
+	   			do {								                              //Recebe e valida a quantidade informada para compra maior do que zero
+	   				printf("2. Digite a quantidade desejada em (kg): ");
 	   				scanf("%f", &quantidade);
 	   				if (quantidade <= 0) {
-	   					printf("\nValor inválido, valor de compra não pode ser zero");
+	   					printf("\n Valor inválido, valor de compra não pode ser zero");
 	   					getch();
 						system ("cls");			   	
 					}
 				} while (quantidade <= 0);
 				
-				printf("1. Nome do Fornecedor: "); 						//Recebe nome do fornecedor
+				printf("\n 3. Nome do Fornecedor: ");                             //Recebe nome do fornecedor
 				fflush(stdin);
 				gets (f[i].nome_fornecedor);
 				
-				printf("\nO valor pago por %.2f kg do código %d é de %.2f reais", quantidade, f[i].codigo_item, f[i].preco_item * quantidade);
+				printf("\n O valor pago por %.2f kg do código %d é de %.2f reais", quantidade, f[i].codigo_item, f[i].preco_item * quantidade);
 				
-				do {										//Recebe e valida confirmacao de compra
-					printf("\n\nDeseja confirmar a compra? "); 
-					printf("\nS= Sim / N= Não \n"); 			
+				do {								                             //Recebe e valida confirmacao de compra efetuada
+					printf("\n\n Deseja confirmar a compra? "); 
+					printf("\n S= Sim / N= Não \n"); 			
 					confirma_compra = tolower(getche());
 		
 					if ((confirma_compra !='s') && (confirma_compra !='n')) {
 						system("cls"); //Limpa tela....
-						printf("Dado inválido, digite novamente"); 	
+						printf("\n Dado inválido, digite novamente"); 	
 						getch();
 					}
 				}  while ((confirma_compra !='s') && (confirma_compra !='n'));
 				
 				if (confirma_compra =='s') {
-					f[i].quantidade_item= (f[i].quantidade_item + quantidade);	// Desconta quantidade don estoque atual
+					f[i].quantidade_item= (f[i].quantidade_item + quantidade);	// Atualiza quantidade de estoque do item
 	
 					hf[i] = f[i];                                               // Carrega os dados para o histórico de compras
 					hf[i].quantidade_item = quantidade;                         // Carrega a quantidade atual da compra para o historico
 					hf[i].preco_item = hf[i].preco_item * quantidade ;			// Calcula valor pago na compra para o historico
 					
-					m++;                                        //Incrementa quantidade de itens comprados
+					m++;                                                        //Incrementa quantidade de itens comprados
 				}							
-			} 
-		}
-		
-		if (cont <= 0) {
-			printf("\nProduto desejado indisponível ");
+			} else {
+				
+			printf("\n Produto desejado indisponível ");
 			getch();
-			system ("cls");			
-		}					
+			system ("cls");
+			
+			}
+		}				
 	}
 	return m;
 }
@@ -357,7 +357,7 @@ void consulta_estoque(int n, ITEM f[100])
 	printf("\n=========================================== CONSULTA DE ESTOQUE ================================================ ");
 	printf("\n================================================================================================================\n\n ");
 
-
+  																				//Laco para impressao das itens cadastrados
     for(i=0; i<n ; i++) {	
   		if (f[i].quantidade_item > 0) {
   			printf("\n---------------------------------------------------------------------------------------------------------------- ");
@@ -367,7 +367,7 @@ void consulta_estoque(int n, ITEM f[100])
 		}
 	}
 
-	if (cont<=0) {
+	if (cont<=0) {																//Verifica se existem itens cadastradoa
 		system("cls"); //Limpa tela....	
 		printf("\n================================================================================================================ ");
 		printf("\n============================================== CONSULTA DE ESTOQUE ============================================= ");
@@ -389,10 +389,10 @@ int menu1(void)
 	printf("\n================================================ MENU PRINCIPAL ================================================ ");
 	printf("\n================================================================================================================\n\n ");
     printf("0. SAIR\n");
-    printf("1. CADASTRO DE MATERIAIS\n");
-	printf("2. COMPRA DE MATERIAIS RECICLADOS\n");
-    printf("3. HISTÓRICO DE COMPRAS\n");
-    printf("Opcao: "); scanf("%d", &opt);        	
+    printf(" 1. CADASTRO DE MATERIAIS\n");
+	printf(" 2. COMPRA DE MATERIAIS RECICLADOS\n");
+    printf(" 3. HISTÓRICO DE COMPRAS\n");
+    printf(" Opcao: "); scanf("%d", &opt);        	
 	return opt;
 }
 
@@ -402,12 +402,12 @@ int menu2(void)
 	int opt;
     system("cls"); //Limpa tela....	
     printf("\n================================================================================================================ ");
-	printf("\n================================================ MENU CADASTRO ================================================ ");
+	printf("\n================================================ MENU CADASTRO =================================================");
 	printf("\n================================================================================================================\n\n ");
     printf("0. VOLTAR\n");
-    printf("1. CADASTRAR NOVO PRODUTO\n");
-	printf("2. MATERIAIS CADASTRADOS\n");
-    printf("Opcao: "); scanf("%d", &opt);        	
+    printf(" 1. CADASTRAR NOVO PRODUTO\n");
+	printf(" 2. MATERIAIS CADASTRADOS\n");
+    printf(" Opcao: "); scanf("%d", &opt);        	
 	return opt;
 }
 
@@ -420,9 +420,9 @@ int menu3(void)
 	printf("\n============================================= MENU COMPRA E ESTOQUE ============================================ ");
 	printf("\n================================================================================================================\n\n ");
 	printf("0. VOLTAR\n");
-    printf("1. COMPRA DE MATERIAIS\n");
-	printf("2. CONSULTA ESTOQUE DE MATERIAIS\n");
-    printf("Opcao: "); scanf("%d", &opt);        	
+    printf(" 1. COMPRA DE MATERIAIS\n");
+	printf(" 2. CONSULTA ESTOQUE DE MATERIAIS\n");
+    printf(" Opcao: "); scanf("%d", &opt);        	
 	return opt;				
 }
 
