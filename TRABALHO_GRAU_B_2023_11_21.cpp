@@ -367,7 +367,7 @@ void consulta_estoque(int n, ITEM f[100])
 		}
 	}
 
-	if (cont<=0) {																//Verifica se existem itens cadastradoa
+	if (cont<=0) {																//Verifica se existem itens cadastrados
 		system("cls"); //Limpa tela....	
 		printf("\n================================================================================================================ ");
 		printf("\n============================================== CONSULTA DE ESTOQUE ============================================= ");
